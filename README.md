@@ -1,24 +1,16 @@
-\# Cervecera - Trabajo Final
+# Cervecera - Trabajo Final
 
+[Trabajo final de Laboratorio de datos II, consiste en desarrollar un pipeline de machine learning completo y reproducible para predecir el consumo energético del sistema de refrigeración Frio (kW) del día siguiente en una planta cervecera mexicana.]
 
-
-\[Trabajo final de Laboratorio de datos II, consiste en desarrollar un pipeline de machine learning completo y reproducible para predecir el consumo energético del sistema de refrigeración Frio (kW) del día siguiente en una planta cervecera mexicana.]
-
-
-
-\## Cómo clonar el repositorio
-
-
+## Cómo clonar el repositorio
 
 ```powershell
 
-git clone https://github.com/TU\_USUARIO/cervecera.git
+git clone https://github.com/franbaudra/cervecera.git
 
 cd cervecera
 
 ```
-
-
 
 \## Configurar el entorno
 
@@ -26,9 +18,9 @@ cd cervecera
 
 ```powershell
 
-python -m venv cervecera\_env
+python -m venv cervecera_env
 
-.\\cervecera\_env\\Scripts\\Activate.ps1
+cervecera_env\Scripts\Activate.ps1
 
 pip install uv
 
