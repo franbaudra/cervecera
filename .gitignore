@@ -1,6 +1,15 @@
-cervecera_env/
-__pycache__/
-.ipynb_checkpoints/
-.env
-*.pyc
-*.xlsx
+   # Entornos y cachés
+   cervecera_env/
+   .venv/
+   __pycache__/
+   *.pyc
+   .ipynb_checkpoints/
+   .env
+
+   # Datos
+   *.xlsx
+   *.xls
+
+   # Sistema
+   .DS_Store
+   Thumbs.db
