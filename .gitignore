@@ -1,11 +1,15 @@
-cervecera_env/
-__pycache__/
-.ipynb_checkpoints/
-.env
-<<<<<<< Updated upstream
-*.pyc
-=======
-*.pyc
-*.xlsx
-data/processed/dataset_unificado_*.csv
->>>>>>> Stashed changes
+   # Entornos y cachés
+   cervecera_env/
+   .venv/
+   __pycache__/
+   *.pyc
+   .ipynb_checkpoints/
+   .env
+
+   # Datos
+   *.xlsx
+   *.xls
+
+   # Sistema
+   .DS_Store
+   Thumbs.db
