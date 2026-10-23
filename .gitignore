@@ -2,4 +2,10 @@ cervecera_env/
 __pycache__/
 .ipynb_checkpoints/
 .env
+<<<<<<< Updated upstream
 *.pyc
+=======
+*.pyc
+*.xlsx
+data/processed/dataset_unificado_*.csv
+>>>>>>> Stashed changes
