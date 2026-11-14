@@ -1,0 +1,47 @@
+timestamp,corrida,modelo,hiperparametros,conjunto_evaluado,MAE,RMSE,R2,MAE_train,segundos_entrenamiento,n_variables,semilla
+2026-11-14T17:15:40,2026-11-14T17:15:40,Ridge,"{""alpha"": 0.1}",validation,2390.9,3115.56,0.3826,2988.12,0.02,14,42
+2026-11-14T17:15:40,2026-11-14T17:15:40,Ridge,"{""alpha"": 1}",validation,2388.85,3113.87,0.3833,2988.79,0.007,14,42
+2026-11-14T17:15:40,2026-11-14T17:15:40,Ridge,"{""alpha"": 10}",validation,2376.77,3105.3,0.3867,2998.54,0.007,14,42
+2026-11-14T17:15:40,2026-11-14T17:15:40,Ridge,"{""alpha"": 100}",validation,2383.3,3122.39,0.3799,3074.24,0.004,14,42
+2026-11-14T17:15:40,2026-11-14T17:15:40,Ridge,"{""alpha"": 1000}",validation,2326.55,3103.24,0.3875,3226.82,0.005,14,42
+2026-11-14T17:15:40,2026-11-14T17:15:40,Lasso,"{""alpha"": 1}",validation,2389.15,3113.93,0.3833,2988.49,0.01,14,42
+2026-11-14T17:15:40,2026-11-14T17:15:40,Lasso,"{""alpha"": 10}",validation,2374.74,3098.98,0.3892,2992.84,0.014,14,42
+2026-11-14T17:15:40,2026-11-14T17:15:40,Lasso,"{""alpha"": 100}",validation,2304.54,3034.96,0.4141,3025.01,0.021,14,42
+2026-11-14T17:15:40,2026-11-14T17:15:40,Lasso,"{""alpha"": 500}",validation,2294.04,3024.16,0.4183,3085.13,0.014,14,42
+2026-11-14T17:15:40,2026-11-14T17:15:40,Lasso,"{""alpha"": 1000}",validation,2447.08,3176.41,0.3583,3185.51,0.013,14,42
+2026-11-14T17:15:41,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": 6, ""min_samples_leaf"": 3}",validation,2409.21,3125.6,0.3786,2358.68,0.567,14,42
+2026-11-14T17:15:42,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": 6, ""min_samples_leaf"": 5}",validation,2407.85,3125.25,0.3788,2420.21,0.563,14,42
+2026-11-14T17:15:42,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": 6, ""min_samples_leaf"": 10}",validation,2406.78,3129.39,0.3771,2569.22,0.501,14,42
+2026-11-14T17:15:43,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": 6, ""min_samples_leaf"": 20}",validation,2410.2,3112.27,0.3839,2767.34,0.478,14,42
+2026-11-14T17:15:44,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": 10, ""min_samples_leaf"": 3}",validation,2409.54,3111.41,0.3843,1740.66,0.456,14,42
+2026-11-14T17:15:45,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": 10, ""min_samples_leaf"": 5}",validation,2405.28,3117.97,0.3817,2035.91,0.532,14,42
+2026-11-14T17:15:45,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": 10, ""min_samples_leaf"": 10}",validation,2406.54,3129.67,0.377,2452.86,0.688,14,42
+2026-11-14T17:15:46,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": 10, ""min_samples_leaf"": 20}",validation,2409.94,3111.86,0.3841,2758.03,0.643,14,42
+2026-11-14T17:15:47,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": null, ""min_samples_leaf"": 3}",validation,2408.29,3110.27,0.3847,1606.0,0.807,14,42
+2026-11-14T17:15:48,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": null, ""min_samples_leaf"": 5}",validation,2405.99,3119.1,0.3812,1995.5,0.644,14,42
+2026-11-14T17:15:49,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": null, ""min_samples_leaf"": 10}",validation,2406.53,3129.65,0.377,2451.56,0.512,14,42
+2026-11-14T17:15:50,2026-11-14T17:15:40,RandomForest,"{""n_estimators"": 300, ""max_depth"": null, ""min_samples_leaf"": 20}",validation,2409.94,3111.86,0.3841,2758.03,0.585,14,42
+2026-11-14T17:15:51,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 200, ""learning_rate"": 0.02, ""max_depth"": 2}",validation,2395.1,3098.04,0.3895,2862.83,0.327,14,42
+2026-11-14T17:15:51,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 200, ""learning_rate"": 0.02, ""max_depth"": 3}",validation,2347.68,3048.67,0.4088,2646.35,0.241,14,42
+2026-11-14T17:15:51,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 200, ""learning_rate"": 0.02, ""max_depth"": 4}",validation,2368.54,3061.51,0.4039,2339.82,0.304,14,42
+2026-11-14T17:15:51,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 200, ""learning_rate"": 0.05, ""max_depth"": 2}",validation,2437.44,3118.62,0.3814,2669.87,0.224,14,42
+2026-11-14T17:15:52,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 200, ""learning_rate"": 0.05, ""max_depth"": 3}",validation,2393.79,3090.61,0.3925,2283.36,0.255,14,42
+2026-11-14T17:15:52,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 200, ""learning_rate"": 0.05, ""max_depth"": 4}",validation,2418.25,3118.03,0.3816,1786.13,0.289,14,42
+2026-11-14T17:15:52,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 400, ""learning_rate"": 0.02, ""max_depth"": 2}",validation,2386.69,3083.47,0.3953,2719.4,0.372,14,42
+2026-11-14T17:15:53,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 400, ""learning_rate"": 0.02, ""max_depth"": 3}",validation,2338.3,3028.3,0.4167,2383.39,0.436,14,42
+2026-11-14T17:15:53,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 400, ""learning_rate"": 0.02, ""max_depth"": 4}",validation,2358.79,3040.93,0.4118,1932.12,0.516,14,42
+2026-11-14T17:15:54,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 400, ""learning_rate"": 0.05, ""max_depth"": 2}",validation,2446.86,3146.42,0.3703,2417.28,0.357,14,42
+2026-11-14T17:15:54,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 400, ""learning_rate"": 0.05, ""max_depth"": 3}",validation,2352.69,3062.79,0.4034,1803.89,0.414,14,42
+2026-11-14T17:15:55,2026-11-14T17:15:40,XGBoost,"{""n_estimators"": 400, ""learning_rate"": 0.05, ""max_depth"": 4}",validation,2482.64,3167.21,0.362,1161.44,0.586,14,42
+2026-11-14T17:15:55,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 200, ""learning_rate"": 0.02, ""num_leaves"": 4}",validation,2402.92,3107.63,0.3858,2859.95,0.097,14,42
+2026-11-14T17:15:55,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 200, ""learning_rate"": 0.02, ""num_leaves"": 8}",validation,2355.96,3046.17,0.4098,2633.94,0.07,14,42
+2026-11-14T17:15:55,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 200, ""learning_rate"": 0.02, ""num_leaves"": 15}",validation,2375.3,3035.1,0.4141,2319.41,0.101,14,42
+2026-11-14T17:15:55,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 200, ""learning_rate"": 0.05, ""num_leaves"": 4}",validation,2412.87,3088.41,0.3933,2656.42,0.063,14,42
+2026-11-14T17:15:55,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 200, ""learning_rate"": 0.05, ""num_leaves"": 8}",validation,2433.99,3088.35,0.3934,2242.82,0.049,14,42
+2026-11-14T17:15:55,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 200, ""learning_rate"": 0.05, ""num_leaves"": 15}",validation,2440.13,3101.93,0.388,1756.49,0.151,14,42
+2026-11-14T17:15:55,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 400, ""learning_rate"": 0.02, ""num_leaves"": 4}",validation,2403.9,3092.05,0.3919,2716.15,0.085,14,42
+2026-11-14T17:15:56,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 400, ""learning_rate"": 0.02, ""num_leaves"": 8}",validation,2367.06,3030.97,0.4157,2352.0,0.171,14,42
+2026-11-14T17:15:56,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 400, ""learning_rate"": 0.02, ""num_leaves"": 15}",validation,2430.25,3086.11,0.3942,1914.98,0.177,14,42
+2026-11-14T17:15:56,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 400, ""learning_rate"": 0.05, ""num_leaves"": 4}",validation,2464.86,3123.03,0.3797,2429.17,0.067,14,42
+2026-11-14T17:15:56,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 400, ""learning_rate"": 0.05, ""num_leaves"": 8}",validation,2567.28,3208.42,0.3453,1837.03,0.178,14,42
+2026-11-14T17:15:57,2026-11-14T17:15:40,LightGBM,"{""n_estimators"": 400, ""learning_rate"": 0.05, ""num_leaves"": 15}",validation,2596.77,3267.84,0.3208,1229.82,0.197,14,42

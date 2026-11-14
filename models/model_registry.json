@@ -1,0 +1,83 @@
+{
+  "1.0.0": {
+    "version": "1.0.0",
+    "path": "models/modelo_v1.0.0.pkl",
+    "sha256": "b0f41a2cd9e0f43dfa9117683a6cd9000b7986751d61139a03ab70a18ee92af8",
+    "modelo": "Lasso",
+    "hiperparametros": {
+      "alpha": 500
+    },
+    "variables": [
+      "frio_kw",
+      "frio_media_3",
+      "frio_media_7",
+      "frio_media_14",
+      "frio_min_7",
+      "frio_max_7",
+      "sala_maq_kw",
+      "servicios_kw",
+      "planta_kw",
+      "servicios_kw_media_7",
+      "planta_kw_media_7",
+      "dia_semana",
+      "mes",
+      "fin_de_semana"
+    ],
+    "entrenado_con": "train + validation",
+    "filas": {
+      "train": 843,
+      "validation": 180,
+      "test": 182
+    },
+    "metricas_validacion": {
+      "MAE": 2294.04,
+      "RMSE": 3024.16,
+      "R2": 0.4183
+    },
+    "baselines_validacion": {
+      "Persistencia": {
+        "MAE": 2863.74,
+        "RMSE": 3589.62,
+        "R2": 0.1804
+      },
+      "Media móvil 7 días": {
+        "MAE": 2583.01,
+        "RMSE": 3411.63,
+        "R2": 0.2597
+      }
+    },
+    "metricas_test": {
+      "MAE": 2868.21,
+      "RMSE": 3820.74,
+      "R2": 0.5461
+    },
+    "baselines_test": {
+      "Persistencia": {
+        "MAE": 3492.3,
+        "RMSE": 4724.73,
+        "R2": 0.3059
+      },
+      "Media móvil 7 días": {
+        "MAE": 3067.2,
+        "RMSE": 3966.97,
+        "R2": 0.5107
+      }
+    },
+    "mejora_sobre_mejor_baseline_test_pct": 6.49,
+    "mae_validacion_cruzada": {
+      "folds": [
+        4675.58,
+        3934.11,
+        2978.56,
+        3305.95,
+        2246.34
+      ],
+      "media": 3428.11,
+      "desvio": 925.45
+    },
+    "semilla": 42,
+    "commit_git": "78c66e9114e5955f8594f31dc49885460db62cc3",
+    "fecha_entrenamiento": "2026-11-14T17:15:57",
+    "sha256_dataset": "1aad3b4554a8937e7f2614402ba66e42f77591c188732069002955c8ff72ad07"
+  }
+}
