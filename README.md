@@ -79,11 +79,16 @@ Los notebooks explican y justifican las decisiones. No hace falta correrlos para
 
 | Notebook | Contenido |
 |---|---|
-| `notebooks/eda_1_1.ipynb` | Fase 1: lectura, unificación de los archivos y análisis descriptivo. |
+| `notebooks/eda_1_1.ipynb` | Fase 1.1: lectura, unificación de los archivos, checksums y análisis descriptivo. Genera `dataset_unificado_0.csv`. |
+| `notebooks/eda.ipynb` | Fase 1.2 a 1.4: análisis temporal, correlaciones, visualizaciones y conclusiones del EDA. |
 | `notebooks/preprocesamiento.ipynb` | Fase 2: limpieza, feature engineering, selección de variables y dataset final. |
 | `notebooks/modelado.ipynb` | Fase 3: baselines, comparación de modelos, residuos, importancia de variables y modelo final. |
 
-`preprocesamiento.ipynb` y `modelado.ipynb` leen archivos que generan los scripts, así que hay que correr primero los pasos 1 y 2.
+`preprocesamiento.ipynb` y `modelado.ipynb` leen archivos que generan los scripts, así que hay que correr primero los pasos 1 y 2. `eda.ipynb` lee `data/processed/dataset_unificado_0.csv`, que ya está en el repositorio.
+
+## Informe
+
+Las decisiones, su justificación, las conclusiones y las limitaciones del modelo están en [`informe.md`](informe.md).
 
 ## Resultados
 
@@ -109,6 +114,7 @@ MAE sobre el conjunto de test (del 2023-04-24 al 2023-10-24), en kW:
 │   └── model_registry.json
 ├── notebooks/
 │   ├── eda_1_1.ipynb
+│   ├── eda.ipynb
 │   ├── preprocesamiento.ipynb
 │   └── modelado.ipynb
 ├── src/
@@ -121,6 +127,7 @@ MAE sobre el conjunto de test (del 2023-04-24 al 2023-10-24), en kW:
 │   ├── predicciones.csv
 │   └── experiment_logs.csv
 ├── consigna.pdf
+├── informe.md
 ├── requirements.txt
 └── README.md
 ```
