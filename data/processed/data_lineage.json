@@ -1,0 +1,66 @@
+{
+  "archivo": "processed/dataset_final.csv",
+  "sha256": "1aad3b4554a8937e7f2614402ba66e42f77591c188732069002955c8ff72ad07",
+  "fecha": "2026-11-14T17:23:37",
+  "script": "src/preprocessing_pipeline.py",
+  "semilla": 42,
+  "origen": [
+    {
+      "archivo": "Totalizadores Planta - 2021_2023.xlsx",
+      "sha256": "b4dbfacd0fd8d7720ec6dfc09dc593fac479d78a7c17ea671692590dc85f90fb",
+      "prioridad": 1
+    },
+    {
+      "archivo": "Totalizadores Planta 2022_2023.xlsx",
+      "sha256": "aba9f9ff11e6fa477af282f14a88354f8a55c782941d5a4eb403e4c742e6df98",
+      "prioridad": 2
+    },
+    {
+      "archivo": "Totalizadores Planta 2020_2022.xlsx",
+      "sha256": "7bb3474c1686712eed9634b1afc757540766dad56c15580a866a3145ad9c53d7",
+      "prioridad": 3
+    }
+  ],
+  "hoja": "Consolidado EE",
+  "columnas_base": [
+    "frio_kw",
+    "sala_maq_kw",
+    "servicios_kw",
+    "planta_kw"
+  ],
+  "transformaciones": [
+    "Lectura de la hoja Consolidado EE y conversión de textos a números",
+    "Reasignación de los días apilados bajo una misma fecha al día faltante anterior más cercano",
+    "Total diario = registro de las 23:59 de cada día",
+    "Días sin 23:59 que llegan a las 23:00: estimación con el ritmo de las últimas 3 horas",
+    "Totales de 1000000 o más y negativos: se vacían (frio_kw se reconstruye sacando el salto)",
+    "Unión de los tres archivos por día, con prioridad 2021_2023 > 2022_2023 > 2020_2022",
+    "Huecos de hasta 3 días en las predictoras: mediana de los 7 días anteriores",
+    "Variables: promedios móviles, mínimo y máximo de 7 días, y calendario del día a predecir",
+    "Target y = frio_kw del día siguiente (shift(-1))",
+    "Se eliminan las filas sin target o de días vacíos",
+    "División temporal 70% train, 15% validation, 15% test. Datos sin escalar"
+  ],
+  "variables": [
+    "frio_kw",
+    "frio_media_3",
+    "frio_media_7",
+    "frio_media_14",
+    "frio_min_7",
+    "frio_max_7",
+    "sala_maq_kw",
+    "servicios_kw",
+    "planta_kw",
+    "servicios_kw_media_7",
+    "planta_kw_media_7",
+    "dia_semana",
+    "mes",
+    "fin_de_semana"
+  ],
+  "objetivo": "y",
+  "filas": {
+    "train": 843,
+    "validation": 180,
+    "test": 182
+  }
+}
