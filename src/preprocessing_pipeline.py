@@ -3,7 +3,7 @@
 Hace en un solo lugar, y con reglas generales, lo que se analizó y justificó en
 notebooks/eda_1_1.ipynb y notebooks/preprocesamiento.ipynb:
 
-    Excel  ->  lecturas horarias  ->  una fila por día (valor de las 23:59)
+    Excel  ->  lecturas horarias  ->  una fila por día (valor de las 23:59 y consumo de las últimas 6 horas)
            ->  limpieza  ->  variables  ->  data/processed/dataset_final.csv
 
 Lo usan los tres pasos del proyecto, para que el preprocesamiento sea siempre el mismo:
@@ -52,10 +52,17 @@ NOMBRE_EN_EXCEL = {
     "servicios_kw": "Servicios (Kw)", "planta_kw": "Planta (Kw)",
 }
 
+# Consumo de las últimas 6 horas del día (de las 18:00 al último registro), que se calcula
+# con las lecturas horarias de estas columnas. Se agregaron en la versión 1.1.0 del modelo.
+HORA_INICIO_ULTIMAS_HORAS = 18
+COLUMNAS_ULTIMAS_HORAS = {"frio_kw": "frio_ult_6h", "planta_kw": "planta_ult_6h", "servicios_kw": "servicios_ult_6h"}
+COLUMNAS_DIARIAS = COLUMNAS_BASE + list(COLUMNAS_ULTIMAS_HORAS.values())
+
 # Variables finales del modelo (selección justificada en notebooks/preprocesamiento.ipynb)
 VARIABLES = [
     "frio_kw", "frio_media_3", "frio_media_7", "frio_media_14", "frio_min_7", "frio_max_7",
     "sala_maq_kw", "servicios_kw", "planta_kw", "servicios_kw_media_7", "planta_kw_media_7",
+    "frio_ult_6h", "planta_ult_6h", "servicios_ult_6h",
     "dia_semana", "mes", "fin_de_semana",
 ]
 OBJETIVO = "y"
@@ -159,6 +166,25 @@ def total_sin_salto(valores):
     return valores[-1] - incrementos[salto] + np.nanmedian(np.delete(incrementos, salto))
 
 
+def consumo_ultimas_horas(h):
+    """Consumo de cada columna entre las 18:00 y el último registro del día (23:59 o 23:00),
+    llevado a 6 horas. Es el dato más reciente que hay antes del día a predecir.
+
+    Como es una resta entre dos lecturas del mismo día, no le afecta que el totalizador haya
+    tenido un salto antes de las 18:00. Si el resultado es negativo o enorme, queda vacío."""
+    inicio = pd.Timedelta(hours=HORA_INICIO_ULTIMAS_HORAS)
+    horas_totales = 24 - HORA_INICIO_ULTIMAS_HORAS
+    resultado = {}
+    for columna, nombre in COLUMNAS_ULTIMAS_HORAS.items():
+        lecturas = h[["dia", "t", columna]].dropna()
+        primera = lecturas[lecturas["t"] == inicio].drop_duplicates("dia").set_index("dia")
+        ultima = lecturas[lecturas["t"] >= H_23].drop_duplicates("dia", keep="last").set_index("dia")
+        horas = (ultima["t"] - primera["t"]) / pd.Timedelta(hours=1)
+        consumo = (ultima[columna] - primera[columna]) / horas * horas_totales
+        resultado[nombre] = consumo.where((consumo >= 0) & (consumo < UMBRAL_IMPOSIBLE / 10))
+    return pd.DataFrame(resultado)
+
+
 def calcular_total_diario(h):
     """Devuelve una fila por día con el total de las 23:59 de cada columna base.
 
@@ -197,7 +223,8 @@ def calcular_total_diario(h):
 
     valores = diario[COLUMNAS_BASE]
     diario[COLUMNAS_BASE] = valores.mask((valores.abs() >= UMBRAL_IMPOSIBLE) | (valores < 0))
-    return diario
+
+    return diario.join(consumo_ultimas_horas(h).reindex(calendario))
 
 
 def excel_a_diario(ruta):
@@ -219,11 +246,11 @@ def unir_archivos(diarios):
     medidos = [d.where(d["dia_estimado_23h"] == 0) for d in diarios]
     estimados = [d.where(d["dia_estimado_23h"] == 1) for d in diarios]
 
-    unido = pd.DataFrame(index=calendario, columns=COLUMNAS_BASE + marcas, dtype=float)
+    unido = pd.DataFrame(index=calendario, columns=COLUMNAS_DIARIAS + marcas, dtype=float)
     for d in medidos + estimados:
         unido = unido.combine_first(d.reindex(calendario))
     unido[marcas] = unido[marcas].fillna(0).astype(int)
-    return unido[COLUMNAS_BASE + marcas]
+    return unido[COLUMNAS_DIARIAS + marcas]
 
 
 # ------------------------------------------------------------------ 4. LIMPIEZA
@@ -244,7 +271,7 @@ def limpiar(diario):
     diario = diario.copy()
     diario["dia_vacio"] = diario[COLUMNAS_BASE].isna().all(axis=1).astype(int)
 
-    predictoras = [c for c in COLUMNAS_BASE if c != COLUMNA_FRIO]
+    predictoras = [c for c in COLUMNAS_DIARIAS if c != COLUMNA_FRIO]
     largo = diario[predictoras].apply(largo_del_hueco)
     a_imputar = (largo > 0) & (largo <= LIMITE_HUECO_CORTO)
     a_imputar = a_imputar.mul(diario["dia_vacio"] == 0, axis=0)
@@ -365,6 +392,7 @@ def main():
             f"Totales de {UMBRAL_IMPOSIBLE:.0f} o más y negativos: se vacían (frio_kw se reconstruye sacando el salto)",
             "Unión de los tres archivos por día, con prioridad 2021_2023 > 2022_2023 > 2020_2022",
             f"Huecos de hasta {LIMITE_HUECO_CORTO} días en las predictoras: mediana de los 7 días anteriores",
+            "Consumo de las últimas 6 horas del día (de las 18:00 al último registro) de frío, planta y servicios",
             "Variables: promedios móviles, mínimo y máximo de 7 días, y calendario del día a predecir",
             "Target y = frio_kw del día siguiente (shift(-1))",
             "Se eliminan las filas sin target o de días vacíos",

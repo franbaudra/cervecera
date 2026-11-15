@@ -37,7 +37,12 @@ sys.path.append(str(Path(__file__).resolve().parent))
 from integridad import huella
 from preprocessing_pipeline import OBJETIVO, RAIZ, RUTA_DATASET_FINAL, SEMILLA, VARIABLES
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
+# Qué cambió en cada versión del modelo. Queda anotado en el registro.
+CAMBIOS = {
+    "1.0.0": "Primera versión: 14 variables calculadas con los totales diarios.",
+    "1.1.0": "Se agrega el consumo de las últimas 6 horas del día de frío, planta y servicios (17 variables).",
+}
 
 CARPETA_MODELOS = RAIZ / "models"
 RUTA_REGISTRO = CARPETA_MODELOS / "model_registry.json"
@@ -215,6 +220,7 @@ def main():
     registro = json.load(open(RUTA_REGISTRO, encoding="utf-8")) if RUTA_REGISTRO.exists() else {}
     registro[VERSION] = {
         "version": VERSION,
+        "cambios": CAMBIOS.get(VERSION, ""),
         "path": ruta_modelo.relative_to(RAIZ).as_posix(),
         "sha256": huella(ruta_modelo),
         "modelo": nombre,
