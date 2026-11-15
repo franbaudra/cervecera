@@ -57,7 +57,7 @@ python src/train_model.py
 Calcula los dos baselines, prueba Ridge, Lasso, Random Forest, XGBoost y LightGBM, y elige el de menor MAE en validation. Genera:
 
 - `results/experiment_logs.csv`: una fila por cada prueba, con hiperparámetros, MAE, RMSE, R² y la fecha y hora.
-- `models/modelo_v1.0.0.pkl`: el modelo final, reentrenado con train + validation.
+- `models/modelo_v1.1.0.pkl`: el modelo final, reentrenado con train + validation. La versión anterior (`modelo_v1.0.0.pkl`) queda guardada.
 - `models/model_registry.json`: versión, hiperparámetros, métricas, ruta del modelo y commit de Git.
 
 ### 3. Predicción
@@ -98,7 +98,8 @@ MAE sobre el conjunto de test (del 2023-04-24 al 2023-10-24), en kW:
 |---|---|
 | Persistencia | 3.492 |
 | Media móvil de 7 días | 3.067 |
-| Modelo final (Lasso, v1.0.0) | 2.868 |
+| Modelo v1.0.0 (Lasso, 14 variables) | 2.868 |
+| **Modelo final v1.1.0 (Lasso, 17 variables)** | **2.709** |
 
 ## Estructura del proyecto
 
@@ -111,6 +112,7 @@ MAE sobre el conjunto de test (del 2023-04-24 al 2023-10-24), en kW:
 │       └── data_lineage.json
 ├── models/
 │   ├── modelo_v1.0.0.pkl
+│   ├── modelo_v1.1.0.pkl
 │   └── model_registry.json
 ├── notebooks/
 │   ├── eda_1_1.ipynb

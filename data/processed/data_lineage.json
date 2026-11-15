@@ -1,7 +1,7 @@
 {
   "archivo": "processed/dataset_final.csv",
-  "sha256": "1aad3b4554a8937e7f2614402ba66e42f77591c188732069002955c8ff72ad07",
-  "fecha": "2026-11-14T17:23:37",
+  "sha256": "6ac2525d612d3a13210c2834a8de2d870b422cd99b0c53af8ad0ee59eed01a50",
+  "fecha": "2026-11-15T00:35:49",
   "script": "src/preprocessing_pipeline.py",
   "semilla": 42,
   "origen": [
@@ -36,6 +36,7 @@
     "Totales de 1000000 o más y negativos: se vacían (frio_kw se reconstruye sacando el salto)",
     "Unión de los tres archivos por día, con prioridad 2021_2023 > 2022_2023 > 2020_2022",
     "Huecos de hasta 3 días en las predictoras: mediana de los 7 días anteriores",
+    "Consumo de las últimas 6 horas del día (de las 18:00 al último registro) de frío, planta y servicios",
     "Variables: promedios móviles, mínimo y máximo de 7 días, y calendario del día a predecir",
     "Target y = frio_kw del día siguiente (shift(-1))",
     "Se eliminan las filas sin target o de días vacíos",
@@ -53,6 +54,9 @@
     "planta_kw",
     "servicios_kw_media_7",
     "planta_kw_media_7",
+    "frio_ult_6h",
+    "planta_ult_6h",
+    "servicios_ult_6h",
     "dia_semana",
     "mes",
     "fin_de_semana"
