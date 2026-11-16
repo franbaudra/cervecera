@@ -1,0 +1,3 @@
+# Los archivos de datos se guardan tal cual, sin convertir los saltos de línea.
+# Si Git los convirtiera, cambiaría su hash y no coincidiría con data/checksums.json.
+*.csv -text
