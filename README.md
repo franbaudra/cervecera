@@ -11,7 +11,7 @@ cd cervecera
 
 ## Configurar el entorno
 
-Se necesita Python 3.12.
+Se necesita Python 3.12. 
 
 ```powershell
 python -m venv cervecera_env
@@ -21,6 +21,8 @@ uv pip install -r requirements.txt
 ```
 
 En Linux o Mac el entorno se activa con `source cervecera_env/bin/activate`.
+
+LightGBM necesita la librería OpenMP del sistema. En Windows ya viene incluida. En Linux, si falta, se instala con `sudo apt install libgomp1`, y en Mac con `brew install libomp`.
 
 ## Datos
 
